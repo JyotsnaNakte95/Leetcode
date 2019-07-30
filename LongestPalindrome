@@ -1,0 +1,35 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        
+        int counter=0;
+        int oddcount=0;
+        char[] c = s.toCharArray();
+        HashMap<Character, Integer> count = new HashMap();
+         for (int i=0;i<c.length;i++){
+             count.put(c[i], count.getOrDefault(c[i], 0) + 1);
+         }
+   
+        for (HashMap.Entry<Character, Integer> entry : count.entrySet())  {
+            if(entry.getValue()%2==0){
+                counter=counter+ entry.getValue();
+            }
+            else if(entry.getValue()%2!=0){
+                if(entry.getValue()>1){
+                    counter=counter+entry.getValue()-1;
+                    oddcount=oddcount+1;
+                }
+                else{
+                oddcount=oddcount+1;
+                }
+                }
+        }
+            
+            
+            if(oddcount>0){
+                
+                counter=counter+1;
+            }
+
+        return counter;
+    }
+}
