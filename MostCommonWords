@@ -1,0 +1,23 @@
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        HashMap<String, Integer> words = new HashMap<String, Integer>();
+    	HashSet<String> banned_words = new HashSet<String>();
+    	for(String word : banned)
+    		banned_words.add(word.toLowerCase());
+    	int max = 0;
+    	String max_string = null;
+        for(String word : paragraph.split("\\W+")) {
+            word = word.toLowerCase();
+        	if(!banned_words.contains(word)) {
+        		words.put(word, words.getOrDefault(word, 0) + 1);
+        		if(words.get(word) > max) {
+        			max = words.get(word);
+        			max_string = word;
+        		}
+        		
+        	}
+        }
+        
+        return max_string;
+    }
+}
