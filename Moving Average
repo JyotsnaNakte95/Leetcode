@@ -1,0 +1,21 @@
+class MovingAverage {
+    
+    private final Queue<Integer> queue;
+    private final int capacity;
+    private double movingSum;
+
+    public MovingAverage(int size) {
+        if (size <= 0) throw new IllegalArgumentException("Capacity must be greater than 0");
+        this.queue = new LinkedList<>();
+        this.capacity = size;
+        this.movingSum = 0;
+    }
+    
+    public double next(int val) {
+        movingSum += val;
+        queue.offer(val);
+		
+        while (queue.size() > capacity) movingSum -= queue.poll();
+        return movingSum / queue.size();
+    }
+}
