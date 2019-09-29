@@ -1,0 +1,19 @@
+class Solution {
+    public int calculateTime(String keyboard, String word) {
+        char[] keyb = keyboard.toCharArray();
+        char[] wordd =word.toCharArray();
+        HashMap<Character, Integer> hm = new HashMap<>();
+        for(int i=0;i<keyb.length;i++){
+            hm.put(keyb[i],i);
+        }
+        int time=0;
+        int val=0;
+        int currentindx=0;
+        for(int j=0;j<wordd.length;j++){            
+            val=Math.abs(currentindx-hm.get(wordd[j]));
+            currentindx=hm.get(wordd[j]);
+            time=time+val;
+        }
+        return time;
+    }
+}
