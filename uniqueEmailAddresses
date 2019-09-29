@@ -1,0 +1,44 @@
+class Solution {
+    
+    public String findaddsign(String s){
+        if(s.contains("+")){
+            String[] parts = s.split("\\+");
+            return parts[0];
+        }
+        return s;
+    }
+    
+    public String finddot(String s){
+        if(s.contains(".")){
+            //System.out.println("Im in"+s);
+           String it = s.replaceAll("\\.", ""); 
+            //System.out.println("jk "+it);
+            return it;
+        }
+        return s;
+    }
+    
+    public int numUniqueEmails(String[] emails) {
+        String at = "@";
+        HashSet<String> h = new HashSet<String>(); 
+        for(int i=0;i<emails.length;i++){
+            if(emails[i].substring(0,1)=="+"){
+                continue;
+            }
+            //System.out.println(emails[i]);
+            String[] parts = emails[i].split("@");
+            
+            String u=findaddsign(parts[0]);
+            //System.out.println(u);
+            String v= finddot(u);
+            //System.out.println("im v"+v);
+            String finalSolution= v+at+ parts[1];
+            //System.out.println(finalSolution);
+            h.add(finalSolution);
+        }
+        
+        int setsize= h.size();
+        return setsize;
+    }
+}
+
